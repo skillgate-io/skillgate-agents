@@ -1,0 +1,53 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '\"\\(.tool_name) \\(.tool_input.command // empty)\"' | skillgate gateway check --stdin --capability shell.exec 2>/dev/null; exit 0"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '\"\\(.tool_name) \\(.tool_input.file_path // .tool_input.notebook_path // empty)\"' | skillgate gateway check --stdin --capability fs.write 2>/dev/null; exit 0"
+          }
+        ]
+      },
+      {
+        "matcher": "WebFetch|WebSearch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '\"\\(.tool_name) \\(.tool_input.url // empty)\"' | skillgate gateway check --stdin --capability net.outbound 2>/dev/null; exit 0"
+          }
+        ]
+      },
+      {
+        "matcher": "Task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '\"Task \\(.tool_input.description // empty)\"' | skillgate gateway check --stdin --capability shell.exec --subagent 2>/dev/null; exit 0"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_response.output // empty' | skillgate gateway scan-output --stdin 2>/dev/null; exit 0"
+          }
+        ]
+      }
+    ]
+  }
+}

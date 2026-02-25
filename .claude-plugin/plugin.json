@@ -1,0 +1,23 @@
+{
+  "name": "skillgate-agents",
+  "description": "Runtime security for AI agents. Enforce capability policies, detect prompt injection across all Claude Code attack surfaces (MCP tools, hooks, instruction files, slash commands, memory, sub-agents), and produce signed audit records — all without leaving your editor.",
+  "version": "2.0.0",
+  "author": {
+    "name": "SkillGate",
+    "email": "hello@skillgate.io",
+    "url": "https://skillgate.io"
+  },
+  "license": "MIT",
+  "homepage": "https://docs.skillgate.io",
+  "repository": "https://github.com/skillgate-io/skillgate-agents",
+  "keywords": [
+    "security",
+    "ai-agent-security",
+    "runtime-enforcement",
+    "mcp-gateway",
+    "prompt-injection",
+    "claude-code",
+    "capability-firewall",
+    "supply-chain-security"
+  ]
+}

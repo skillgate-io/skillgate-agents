@@ -1,0 +1,34 @@
+name: ci-plugin
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Validate plugin structure
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install SkillGate
+        run: pip install skillgate pynacl
+      - name: Validate plugin manifest
+        run: python3 scripts/validate_plugin.py manifest
+      - name: Validate skills (6 required)
+        run: python3 scripts/validate_plugin.py skills
+      - name: Validate commands (6 required)
+        run: python3 scripts/validate_plugin.py commands
+      - name: Validate hooks
+        run: python3 scripts/validate_plugin.py hooks
+      - name: Validate security-sentinel agent
+        run: python3 scripts/validate_plugin.py agent
+      - name: Validate skill frontmatter
+        run: python3 scripts/validate_plugin.py frontmatter
+      - name: Verify README completeness
+        run: python3 scripts/validate_plugin.py readme
+      - name: Verify plugin attestation
+        run: skillgate verify attestation.json

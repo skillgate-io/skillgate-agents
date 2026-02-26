@@ -1,0 +1,78 @@
+{
+  "submission_target": "skillsmp.com",
+  "plugin_id": "skillgate-agents",
+  "name": "skillgate-agents",
+  "version": "2.0.0",
+  "tagline": "Runtime security for Claude Code agents",
+  "description": "Enforce capability policies, detect prompt injection across all Claude Code attack surfaces (MCP tools, hooks, instruction files, slash commands, memory, sub-agents), and produce signed audit records — all without leaving your editor.",
+  "author": {
+    "name": "SkillGate",
+    "url": "https://skillgate.io",
+    "email": "hello@skillgate.io"
+  },
+  "license": "MIT",
+  "homepage": "https://docs.skillgate.io",
+  "repository": "https://github.com/skillgate-io/skillgate-agents",
+  "install_command": "pip install skillgate && claude --plugin-dir ./skillgate-agents",
+  "categories": [
+    "security",
+    "governance",
+    "compliance",
+    "ai-safety"
+  ],
+  "tags": [
+    "runtime-enforcement",
+    "mcp-gateway",
+    "prompt-injection",
+    "capability-firewall",
+    "supply-chain-security",
+    "audit-log",
+    "ed25519-attestation"
+  ],
+  "capabilities": [
+    "Blocks prompt injection in MCP tool descriptions before model exposure",
+    "Enforces capability policy on Bash, Write, WebFetch, and Task tool calls via hooks",
+    "Scans CLAUDE.md, AGENTS.md, slash commands, and memory files for injection patterns",
+    "Reviews and signs Claude Code hooks against capability policy",
+    "Produces Ed25519-signed audit records for every enforcement decision",
+    "Security-sentinel agent provides SAFE / REVIEW REQUIRED / BLOCKED verdicts"
+  ],
+  "slash_commands": [
+    {
+      "command": "/skillgate-agents:secure-project",
+      "description": "Set up a complete security baseline for the current project"
+    },
+    {
+      "command": "/skillgate-agents:audit",
+      "description": "Show recent enforcement decisions and policy violations"
+    },
+    {
+      "command": "/skillgate-agents:scan-mcp",
+      "description": "Scan MCP servers for tool description poisoning and drift"
+    },
+    {
+      "command": "/skillgate-agents:approve-hooks",
+      "description": "Review and sign hooks against capability policy"
+    },
+    {
+      "command": "/skillgate-agents:check-injection",
+      "description": "Scan instruction files and slash commands for injection"
+    },
+    {
+      "command": "/skillgate-agents:enforce",
+      "description": "Start, verify, or troubleshoot the runtime sidecar"
+    }
+  ],
+  "requires": [
+    "Claude Code 1.0.33+",
+    "Python 3.12+",
+    "SkillGate CLI: pip install skillgate"
+  ],
+  "security_posture": {
+    "attestation": "Ed25519 signed",
+    "attestation_public_key": "2840073cf11b88f446b30c23d0cb916f46194bed608058bb052e573225955ca6",
+    "verify_command": "skillgate verify attestation.json",
+    "license": "MIT",
+    "audit_log": "NDJSON hash-chained"
+  }
+}

@@ -1,0 +1,13 @@
+version: "2"
+name: secure-claude-agents
+trust_tiers:
+  default:
+    allow_capabilities:
+      - fs.read
+      - git.diff
+      - config.load
+    deny_capabilities:
+      - shell.exec
+rules: []
+approval_requirements: []
+exceptions: []

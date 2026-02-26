@@ -1,0 +1,37 @@
+{
+  "submission_target": "agentskills.io",
+  "plugin_id": "skillgate-agents",
+  "name": "SkillGate Agents",
+  "version": "2.0.0",
+  "short_description": "Runtime security for Claude Code agents",
+  "long_description": "SkillGate Agents enforces capability policies and detects prompt injection across every Claude Code attack surface — MCP tool descriptions, hooks, instruction files, slash commands, memory files, and sub-agents. All enforcement decisions are recorded as Ed25519-signed audit entries. The plugin works transparently via PreToolUse hooks with graceful no-op when the sidecar is unavailable.",
+  "publisher": {
+    "name": "SkillGate",
+    "website": "https://skillgate.io",
+    "github": "https://github.com/skillgate-io"
+  },
+  "repository": "https://github.com/skillgate-io/skillgate-agents",
+  "documentation": "https://docs.skillgate.io/guides/claude-code",
+  "license": "MIT",
+  "install": {
+    "one_liner": "pip install skillgate && claude --plugin-dir ./skillgate-agents",
+    "marketplace": "/plugin install skillgate-agents"
+  },
+  "framework": "Claude Code",
+  "attack_surfaces_covered": [
+    "MCP tool descriptions (injection scan before model exposure)",
+    "PreToolUse/PostToolUse hooks (capability gating)",
+    "CLAUDE.md and AGENTS.md (30+ injection patterns)",
+    "Slash commands and memory files",
+    "Sub-agents spawned via Task tool",
+    "settings.json permission drift"
+  ],
+  "skills": 6,
+  "slash_commands": 6,
+  "agents": 1,
+  "hooks": "automatic — Bash, Write, WebFetch, Task",
+  "attestation": {
+    "method": "Ed25519 + SHA-256 canonical JSON",
+    "verify": "skillgate verify attestation.json"
+  }
+}

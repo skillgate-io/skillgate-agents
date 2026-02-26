@@ -1,6 +1,6 @@
 # skillgate-agents
 
-Runtime security for Claude Code. A Claude Code plugin that enforces capability policies, detects prompt injection across all attack surfaces, and produces signed audit records — without leaving your editor.
+Runtime security for Claude Code. A Claude Code plugin that enforces capability policies, detects prompt injection across all attack surfaces, and produces signed audit records, all without leaving your editor.
 
 ## Install
 
@@ -45,7 +45,7 @@ skillgate sidecar start
 
 ## Skills (model-invoked)
 
-Claude automatically uses these skills when relevant — no slash command needed:
+Claude automatically uses these skills when relevant. No slash command needed:
 
 | Skill | Triggers when you ask about |
 |---|---|
@@ -58,15 +58,15 @@ Claude automatically uses these skills when relevant — no slash command needed
 
 ## Automatic enforcement (hooks)
 
-The plugin installs hooks that run SkillGate checks automatically — no explicit invocation needed:
+The plugin installs hooks that run SkillGate checks automatically. No explicit invocation needed:
 
-- **Before every `Bash` call** — checks the command against capability policy
-- **Before every `Write` / `Edit`** — checks the file path against `fs.write` policy
-- **Before every `WebFetch` / `WebSearch`** — checks against `net.outbound` policy
-- **Before every `Task`** — enforces sub-agent budget inheritance
-- **After every `Bash` call** — scans output for exfiltration patterns
+- **Before every `Bash` call:** checks the command against capability policy
+- **Before every `Write` / `Edit`:** checks the file path against `fs.write` policy
+- **Before every `WebFetch` / `WebSearch`:** checks against `net.outbound` policy
+- **Before every `Task`:** enforces sub-agent budget inheritance
+- **After every `Bash` call:** scans output for exfiltration patterns
 
-Hooks exit cleanly when the sidecar is not running — enforcement is never a hard blocker in dev mode.
+Hooks exit cleanly when the sidecar is not running. Enforcement is never a hard blocker in dev mode.
 
 ## Security agent
 
@@ -91,9 +91,19 @@ skillgate-agents/
 
 Authentication required for runtime enforcement. Run `skillgate auth` once per session. Enforcement works offline using cached policy (see [offline modes](https://docs.skillgate.io/guides/offline)).
 
+## Verify the plugin
+
+The plugin ships with a signed attestation. Verify it has not been tampered with:
+
+```bash
+skillgate verify attestation.json
+```
+
+Output: `Verification PASSED` confirms the plugin content matches the signed record.
+
 ## License
 
-MIT — see [LICENSE](LICENSE)
+MIT. See [LICENSE](LICENSE).
 
 ## Links
 

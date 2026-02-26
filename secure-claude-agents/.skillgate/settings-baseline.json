@@ -1,0 +1,8 @@
+{
+  "allowedTools": ["git_status", "read_file"],
+  "permissions": {
+    "fs.read": true,
+    "fs.write": false,
+    "shell.exec": false
+  }
+}

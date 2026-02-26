@@ -30,5 +30,7 @@ jobs:
         run: python3 scripts/validate_plugin.py frontmatter
       - name: Verify README completeness
         run: python3 scripts/validate_plugin.py readme
+      - name: Scope-hardening e2e validation
+        run: python3 scripts/e2e_scope_validation.py
       - name: Verify plugin attestation
         run: skillgate verify attestation.json

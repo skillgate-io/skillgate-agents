@@ -34,6 +34,7 @@
     "Enforces capability policy on Bash, Write, WebFetch, and Task tool calls via hooks",
     "Scans CLAUDE.md, AGENTS.md, slash commands, and memory files for injection patterns",
     "Reviews and signs Claude Code hooks against capability policy",
+    "Supports org/user/repo governance scopes with deterministic precedence and identity binding",
     "Produces Ed25519-signed audit records for every enforcement decision",
     "Security-sentinel agent provides SAFE / REVIEW REQUIRED / BLOCKED verdicts"
   ],

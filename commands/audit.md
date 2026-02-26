@@ -10,10 +10,12 @@ Show a concise audit summary of recent SkillGate enforcement decisions. Run `$AR
 
 3. **MCP audit**: Run `skillgate mcp audit` and show the last 10 MCP tool decisions. Flag any `SG_DENY_TOOL_DESCRIPTION_INJECTION` or `SG_DENY_PLUGIN_NOT_ATTESTED` findings.
 
-4. **Hook audit**: Run `skillgate claude hooks audit` and show the last 10 hook executions. Flag any blocked hooks.
+4. **Hook audit**: Run `skillgate claude hooks audit --directory .` and show the last 10 hook executions. Flag any blocked hooks.
 
-5. **Pending approvals**: Run `skillgate sidecar entitlements` and check for pending approvals. If any exist, list them with their `approval_id` and required capabilities.
+5. **Ledger integrity**: Run `skillgate claude ledger verify --scope repo --directory .` and `skillgate claude ledger tail --scope repo --directory . --limit 10`. Flag any tamper or chain-break result immediately.
 
-6. **Risk summary**: If any DENY rate exceeds 10% in the window, or any critical decision codes appear (`SG_DENY_INSTRUCTION_FILE_INJECTION`, `SG_DENY_TOOL_DESCRIPTION_INJECTION`), flag these prominently as requiring investigation.
+6. **Pending approvals**: Run `skillgate sidecar entitlements` and check for pending approvals. If any exist, list them with their `approval_id` and required capabilities.
+
+7. **Risk summary**: If any DENY rate exceeds 10% in the window, or any critical decision codes appear (`SG_DENY_INSTRUCTION_FILE_INJECTION`, `SG_DENY_TOOL_DESCRIPTION_INJECTION`), flag these prominently as requiring investigation.
 
 Format the output as a clear summary the user can scan in 30 seconds. Use plain language — no internal codes without explanation.

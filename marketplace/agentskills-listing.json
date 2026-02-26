@@ -24,7 +24,8 @@
     "CLAUDE.md and AGENTS.md (30+ injection patterns)",
     "Slash commands and memory files",
     "Sub-agents spawned via Task tool",
-    "settings.json permission drift"
+    "settings.json permission drift",
+    "Org/user/repo scope-hardening with identity-bound governance artifacts"
   ],
   "skills": 6,
   "slash_commands": 6,

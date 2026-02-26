@@ -6,28 +6,33 @@ description: Full-surface security governance for Claude Code. Use when scanning
 Full surface scan (runs all checks):
 
 ```bash
-skillgate claude scan .
+skillgate claude scan . --scope repo
 ```
 
 Surface-specific commands:
 
 ```bash
 # Hooks
-skillgate claude hooks list                    # Status: approved / unapproved / changed
-skillgate claude hooks approve <file>          # Sign and approve a hook
-skillgate claude hooks audit                   # Recent hook executions
+skillgate claude hooks list --directory .      # Status: approved / unapproved / changed
+skillgate claude hooks approve <file> --directory .  # Sign and approve a hook
+skillgate claude hooks audit --directory .     # Recent hook executions
 
 # Instruction files (CLAUDE.md, AGENTS.md)
-skillgate claude scan . --surface instruction-files
+skillgate claude scan . --surface instruction-files --scope repo
 
 # Slash commands + memory
-skillgate claude scan . --surface slash-commands,memory
+skillgate claude scan . --surface slash-commands,memory --scope repo
 
 # Settings drift
 skillgate claude settings drift                # Compare vs approved baseline
 
 # Sub-agent lineage
 skillgate claude agents lineage <invocation-id>
+
+# Scope-aware governance baselines
+skillgate claude behavior baseline --scope user --directory .
+skillgate claude approvals baseline --scope repo --directory .
+skillgate claude policy-packs apply enterprise-ci --scope repo --directory .
 ```
 
 Decision codes:

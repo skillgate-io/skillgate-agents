@@ -20,6 +20,22 @@ skillgate auth
 skillgate sidecar start
 ```
 
+## Identity and scope
+
+Set these once per session so governance artifacts bind to the correct workspace/user:
+
+```bash
+export SKILLGATE_ORG_ID=<org-id>
+export SKILLGATE_WORKSPACE_ID=<workspace-id>
+export SKILLGATE_ACTOR_ID=<actor-id-or-email>
+```
+
+Scope convention for Claude governance:
+
+- `--scope repo`: project-local controls (`.skillgate/`)
+- `--scope user`: workspace+actor namespace (`~/.skillgate/claude/workspace/...`)
+- `--scope org`: org defaults (`~/.skillgate/claude/org/...`)
+
 ## What it covers
 
 | Attack surface | Protection |

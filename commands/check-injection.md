@@ -8,7 +8,7 @@ Scan the following surfaces in `$ARGUMENTS` or `.`:
 
 **Surface 3 — Plugin skills**: Any `skills/*/SKILL.md` files
 
-Run: `skillgate claude scan $ARGUMENTS --surface instruction-files,slash-commands,memory`
+Run: `skillgate claude scan $ARGUMENTS --surface instruction-files,slash-commands,memory --scope repo`
 
 For each finding, present:
 - File path and line number
@@ -27,4 +27,4 @@ If zero findings: confirm "All instruction files and commands are clean — no i
 
 If findings exist: do NOT automatically modify files. Present the findings, explain each one, and wait for the user to decide the remediation. Offer to make the specific edits if the user confirms.
 
-At the end, run `skillgate claude scan $ARGUMENTS --surface instruction-files,slash-commands,memory --output sarif > skillgate-injection-scan.sarif` and report that the SARIF file has been written for CI integration.
+At the end, run `skillgate claude scan $ARGUMENTS --surface instruction-files,slash-commands,memory --scope repo --output sarif > skillgate-injection-scan.sarif` and report that the SARIF file has been written for CI integration.

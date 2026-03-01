@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '\"\\(.tool_name) \\(.tool_input.command // empty)\"' | skillgate gateway check --stdin --capability shell.exec 2>/dev/null; exit 0"
+            "command": "CMD=$(jq -r '\"\\(.tool_name) \\(.tool_input.command // empty)\"'); skillgate gateway check --command \"$CMD\" >/dev/null 2>&1 || true"
           }
         ]
       },
@@ -15,7 +15,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '\"\\(.tool_name) \\(.tool_input.file_path // .tool_input.notebook_path // empty)\"' | skillgate gateway check --stdin --capability fs.write 2>/dev/null; exit 0"
+            "command": "CMD=$(jq -r '\"\\(.tool_name) \\(.tool_input.file_path // .tool_input.notebook_path // empty)\"'); skillgate gateway check --command \"$CMD\" >/dev/null 2>&1 || true"
           }
         ]
       },
@@ -24,7 +24,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '\"\\(.tool_name) \\(.tool_input.url // empty)\"' | skillgate gateway check --stdin --capability net.outbound 2>/dev/null; exit 0"
+            "command": "CMD=$(jq -r '\"\\(.tool_name) \\(.tool_input.url // empty)\"'); skillgate gateway check --command \"$CMD\" >/dev/null 2>&1 || true"
           }
         ]
       },
@@ -33,7 +33,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '\"Task \\(.tool_input.description // empty)\"' | skillgate gateway check --stdin --capability shell.exec --subagent 2>/dev/null; exit 0"
+            "command": "CMD=$(jq -r '\"Task \\(.tool_input.description // empty)\"'); skillgate gateway check --command \"$CMD\" >/dev/null 2>&1 || true"
           }
         ]
       }
@@ -44,7 +44,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_response.output // empty' | skillgate gateway scan-output --stdin 2>/dev/null; exit 0"
+            "command": "OUTPUT=$(jq -r '.tool_response.output // empty'); skillgate gateway scan-output --output-text \"$OUTPUT\" >/dev/null 2>&1 || true"
           }
         ]
       }

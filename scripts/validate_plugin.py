@@ -79,6 +79,31 @@ def check_hooks() -> list[str]:
         if m not in matchers:
             errors.append(f"hooks.json: PreToolUse missing matcher '{m}'")
     if not errors:
+        pre_commands: list[str] = []
+        for entry in pre:
+            for hook in entry.get("hooks", []):
+                if isinstance(hook, dict):
+                    command = hook.get("command")
+                    if isinstance(command, str):
+                        pre_commands.append(command)
+
+        post = hooks_data.get("hooks", {}).get("PostToolUse", [])
+        post_commands: list[str] = []
+        for entry in post:
+            for hook in entry.get("hooks", []):
+                if isinstance(hook, dict):
+                    command = hook.get("command")
+                    if isinstance(command, str):
+                        post_commands.append(command)
+
+        if not pre_commands or not all("skillgate gateway check --command" in cmd for cmd in pre_commands):
+            errors.append("hooks.json: PreToolUse commands must use 'skillgate gateway check --command'")
+        if not post_commands or not all("skillgate gateway scan-output --output-text" in cmd for cmd in post_commands):
+            errors.append(
+                "hooks.json: PostToolUse commands must use 'skillgate gateway scan-output --output-text'"
+            )
+
+    if not errors:
         print(f"OK: hooks valid — {len(pre)} PreToolUse hooks")
     return errors
 
@@ -127,8 +152,8 @@ def check_readme() -> list[str]:
     content = readme.read_text()
     required_strings = [
         "pip install skillgate",
-        "skillgate auth",
-        "skillgate sidecar start",
+        "skillgate auth login",
+        "skillgate doctor",
         "/skillgate-agents:secure-project",
         "/skillgate-agents:audit",
         "/skillgate-agents:scan-mcp",

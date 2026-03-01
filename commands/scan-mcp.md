@@ -1,20 +1,17 @@
-Scan all MCP servers configured for this project for security threats. Argument: optional server name to scan only that server (`$ARGUMENTS`).
+Review MCP provider safety and registry health for this project.
 
-1. **Discover servers**: Read `.mcp.json` and `.claude/settings.json` to find all configured MCP servers. If `$ARGUMENTS` is provided, filter to only that server.
+Argument: optional server name (`$ARGUMENTS`) to focus the audit.
 
-2. **Registration check**: Run `skillgate mcp list` to see registered servers. For each configured server, report:
-   - Registered / Not registered
-   - Trust level (unverified / community / verified / official)
-   - Last attestation date
-
-3. **Tool description scan**: For each registered server, run `skillgate mcp inspect <server> --check-injection`. Report findings:
-   - Clean: no injection patterns found
-   - Suspicious: list the specific tool name, field (name/description/inputSchema), and pattern matched
-
-   For any `SG_DENY_TOOL_DESCRIPTION_INJECTION` findings, show the exact text that triggered the detection and explain why it is dangerous.
-
-4. **Permission drift**: For each server with an AI-BOM, run `skillgate mcp inspect <server> --drift-check`. Report any capabilities present in the live server that are not in the registered AI-BOM.
-
-5. **Unregistered servers**: For any server found in config files but not in the SkillGate registry, warn the user clearly: "This server is not registered with SkillGate — its tool descriptions have not been scanned and it has no AI-BOM. Run `skillgate mcp allow <server>` to register it after reviewing its source."
-
-6. **Summary**: Print a pass/fail verdict per server and a single overall verdict. Exit with a clear remediation list if any issues found.
+1. Discover configured MCP servers from project config files.
+2. Run `skillgate mcp list` and map each configured server to registry status.
+3. For each registered server, run `skillgate mcp inspect <server>` and summarize:
+   - endpoint
+   - trust level
+   - checksum/version/publisher metadata
+4. Run `skillgate mcp settings-check --ci` to detect permission expansion.
+5. Run `skillgate mcp audit` and flag recent denied actions.
+6. If a server is unregistered, explain the risk and provide a concrete allow command template:
+   - `skillgate mcp allow <server> --endpoint <url> --checksum <sha256> --permissions <comma-list>`
+7. End with:
+   - per-server status (healthy / needs review / blocked)
+   - one prioritized remediation list users can execute immediately

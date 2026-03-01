@@ -24,10 +24,11 @@ skillgate claude scan . --surface instruction-files --scope repo
 skillgate claude scan . --surface slash-commands,memory --scope repo
 
 # Settings drift
-skillgate claude settings drift                # Compare vs approved baseline
+skillgate claude settings drift --directory .
 
-# Sub-agent lineage
-skillgate claude agents lineage <invocation-id>
+# Sub-agent lineage and risk
+skillgate claude agents lineage --directory .
+skillgate claude agents risk --directory .
 
 # Scope-aware governance baselines
 skillgate claude behavior baseline --scope user --directory .

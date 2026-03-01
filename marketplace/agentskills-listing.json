@@ -4,14 +4,14 @@
   "name": "SkillGate Agents",
   "version": "2.0.0",
   "short_description": "Runtime security for Claude Code agents",
-  "long_description": "SkillGate Agents enforces capability policies and detects prompt injection across every Claude Code attack surface — MCP tool descriptions, hooks, instruction files, slash commands, memory files, and sub-agents. All enforcement decisions are recorded as Ed25519-signed audit entries. The plugin works transparently via PreToolUse hooks with graceful no-op when the sidecar is unavailable.",
+  "long_description": "SkillGate Agents helps teams secure Claude Code projects by catching risky instructions, governing hooks and MCP providers, and recording signed audit evidence. It covers instruction files, slash commands, memory, hooks, plugins, and sub-agent flows with practical remediation guidance.",
   "publisher": {
     "name": "SkillGate",
     "website": "https://skillgate.io",
     "github": "https://github.com/skillgate-io"
   },
   "repository": "https://github.com/skillgate-io/skillgate-agents",
-  "documentation": "https://docs.skillgate.io/guides/claude-code",
+  "documentation": "https://docs.skillgate.io/integrations/claude-code",
   "license": "MIT",
   "install": {
     "one_liner": "pip install skillgate && claude --plugin-dir ./skillgate-agents",

@@ -1,15 +1,15 @@
 ---
 name: runtime
-description: Manage the SkillGate runtime enforcement sidecar and interpret decision codes. Use when starting or checking the sidecar, handling SG_DENY or SG_FAIL decision codes, checking capability budgets, configuring offline mode, or calling the /v1/decide API.
+description: Interpret SkillGate runtime decisions and recover quickly from enforcement failures. Use for readiness checks, auth state, gateway decision troubleshooting, and decision-code guidance.
 ---
 
-Start and verify the sidecar:
+Readiness and runtime checks:
 
 ```bash
-skillgate auth                          # Authenticate once — stores SLT in OS keychain
-skillgate sidecar start                 # Start enforcement daemon (port 7391)
-skillgate sidecar health                # Verify: shows circuit state + license mode
-skillgate sidecar entitlements          # Show tier, budgets, SLT expiry
+skillgate auth login
+skillgate auth status
+skillgate doctor
+skillgate gateway check --command "echo runtime-check"
 ```
 
 Key decision codes and actions:
@@ -21,11 +21,12 @@ Key decision codes and actions:
 | `SG_DENY_CAPABILITY_NOT_ALLOWED` | Surface to user; do not retry |
 | `SG_FAIL_LICENSE_EXPIRED_LIMITED_MODE` | Run `skillgate auth` to renew |
 | `SG_FAIL_LICENSE_MISSING` | Run `skillgate auth` with API key |
-| `SG_FAIL_CIRCUIT_OPEN` | Backoff; check `/v1/health` |
+| `SG_FAIL_CIRCUIT_OPEN` | Back off and retry after environment check |
 | `SG_APPROVAL_REQUIRED` | Poll `GET /v1/approvals/{approval_id}` |
 
 Offline modes: Mode A (SLT valid) = full enforcement. Mode B (control plane down) = cached policy. Mode C (SLT expired) = `fs.read` + `git.*` allowed; `shell.exec`/`net.outbound`/`fs.write` blocked.
 
-Sidecar base URL: `http://localhost:7391` (override with `SKILLGATE_SIDECAR_URL`).
+If users explicitly need a local sidecar process, recommend:
+`python -m uvicorn skillgate.sidecar.app:create_sidecar_app --factory --host 127.0.0.1 --port 9911`
 
 `fail_open=False` is the production default — never change in production.

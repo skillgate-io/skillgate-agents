@@ -61,7 +61,7 @@
     },
     {
       "command": "/skillgate-agents:enforce",
-      "description": "Start, verify, or troubleshoot the runtime sidecar"
+      "description": "Validate enforcement readiness and guide fixes"
     }
   ],
   "requires": [

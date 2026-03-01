@@ -1,4 +1,5 @@
-Scan all instruction files and slash commands in the current project for prompt injection patterns. Argument: optional path to scan (`$ARGUMENTS`), otherwise scans the current directory.
+Scan instruction files and slash commands for prompt-injection patterns.
+Argument: optional path (`$ARGUMENTS`), default `.`.
 
 Scan the following surfaces in `$ARGUMENTS` or `.`:
 
@@ -25,6 +26,7 @@ For each finding, present:
 
 If zero findings: confirm "All instruction files and commands are clean — no injection patterns detected."
 
-If findings exist: do NOT automatically modify files. Present the findings, explain each one, and wait for the user to decide the remediation. Offer to make the specific edits if the user confirms.
+If findings exist: do not auto-edit files. Show each issue, explain user risk, and wait for confirmation before patching.
 
-At the end, run `skillgate claude scan $ARGUMENTS --surface instruction-files,slash-commands,memory --scope repo --output sarif > skillgate-injection-scan.sarif` and report that the SARIF file has been written for CI integration.
+At the end, generate SARIF for CI:
+`skillgate claude scan $ARGUMENTS --surface instruction-files,slash-commands,memory --scope repo --output sarif > skillgate-injection-scan.sarif`

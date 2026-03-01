@@ -19,6 +19,7 @@ Requires [SkillGate CLI](https://skillgate.io):
 ```bash
 pip install skillgate
 skillgate auth login
+skillgate sidecar start
 skillgate doctor
 ```
 
@@ -80,6 +81,7 @@ Hooks run checks around tool calls:
 - After `Bash` output to scan returned content
 
 Hooks degrade safely when dependencies are unavailable and keep normal development flow intact.
+If the sidecar is not running, hooks fail open and your workflow continues in offline-safe mode.
 
 ## Verify plugin integrity
 

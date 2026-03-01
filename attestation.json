@@ -1,23 +1,23 @@
 {
   "attestation": {
     "public_key": "2840073cf11b88f446b30c23d0cb916f46194bed608058bb052e573225955ca6",
-    "report_hash": "ed64f9655f17af413b53a393eac1fd091fbaf8580d65581ded062885d164526d",
-    "signature": "1f80273fc3ae5515924222d7dfa02e6e8d476075aefb970c687418947a0cac98ff9e8d42c778b899261d9613363da02cb8c1cfa28aa7f5479234a070235c9501",
-    "timestamp": "2026-03-01T04:21:57Z"
+    "report_hash": "1d23f9893e2e68003b8990ab936d0e2416957e0260008e7566133380220451a4",
+    "signature": "b0c5da4dead7f012fa61a17f4db2ee545cfe30cdf98dbe38b081af4f7b5e19b79450b3696e19282ca00a75c2f925ce09e608e6fa2d091b29ae822b8c919d1d08",
+    "timestamp": "2026-03-01T19:03:01Z"
   },
-  "attested_at": "2026-03-01T04:21:57Z",
+  "attested_at": "2026-03-01T19:03:01Z",
   "files": {
     ".claude-plugin/plugin.json": "2d0d1b2125ec8f3aa904ec15e5ecec458785e29d6cbf03d13537fdef9b279722",
     "LICENSE": "7ba26e449bdcc7e04ceb9b19809b506267d343bbfe204b513e99ffd31f695070",
-    "README.md": "b5879eb7b63a07687ca4af7f15421b9afbc32c85042f8ecdd98af6aee771f002",
+    "README.md": "ce000a861eca3ea183eab2db71e337d797ea4aaf8c0ad7371159d556892e6b18",
     "agents/security-sentinel.md": "04b4b5a0417048093e0a578afd5d2ffcff56425ad03f6f22a31372f8b67784bf",
     "commands/approve-hooks.md": "6e0038393f74656664a6524a5b48d29f7adc8d8bf4a830fff7eb2bb7a71ecb43",
     "commands/audit.md": "c21438fbbaefe5f4339afcedf50e4fa3961f759642e06e403b9f079da2905af9",
     "commands/check-injection.md": "638b4d40ec9fd25f04545f362dfd1df15e9c7acded992944d1c759a5885abf74",
-    "commands/enforce.md": "0863e749150ebe70d268580f7304292c2f65bde99a1d641567e97c8327372754",
+    "commands/enforce.md": "dd901e3df83e716b88ef278f30bd7487fb6a9fd71a57947e7c2edb009a2aa90b",
     "commands/scan-mcp.md": "38964d983321d4772f29d729422ee6e0d777fb60897072842b4988d5302747cd",
     "commands/secure-project.md": "912f867627fe54f6178cf7f11b0cf2978910f723215d3e2372f05855b757f0df",
-    "hooks/hooks.json": "a86e0d15cb277b8558ff21b7b6f5c60db0f3a8310fb52cad6ff8268a756dba85",
+    "hooks/hooks.json": "970732aa485bd624e067e039ec2e8217af5f0bb27a8fa21a9b0d259866dd6c55",
     "secure-claude-agents/.claude/settings.json": "29621c6d9f643a71ab9be4764304840100e8c79076d0d72e6f2bf8ea43754f86",
     "secure-claude-agents/.skillgate/aibom.lock": "ccd376d91a60545d0dbe2f89377847d29ea93b0cbac5b650ccaa3e300708fefe",
     "secure-claude-agents/.skillgate/policy.yml": "f2e9f7abb906e621a1389e4b77fed7ea10bb60e9d3d4514262fec588ff59ff85",
@@ -27,7 +27,7 @@
     "skills/codex/SKILL.md": "1491a110642a96dcea7c22baae103173ff4475579aa5783c54b3285f86f11b4a",
     "skills/mcp/SKILL.md": "2a883dcfb929ff6cdaffa1de43709e8e43731c444e7daa24f34f309d3801454e",
     "skills/runtime/SKILL.md": "fe26dd7e7b6efbe7af7cb7d687fc3a4bb2484364747c68eb1f3b6fae536946fc",
-    "skills/scan/SKILL.md": "786302014622de037183782408a3ade5af8fe09cc26d3793cb37323727cb2da2",
+    "skills/scan/SKILL.md": "4ef574411c26601da844c93e590df521e21d62fe67debf79100d212082e7dea1",
     "skills/sdk/SKILL.md": "ca15058ebf3154903a7bde6f5ea2d337cf6f2a37c77c8a794e7b1e96dbd10ba4"
   },
   "plugin_id": "skillgate-agents",

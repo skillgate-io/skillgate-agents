@@ -10,7 +10,8 @@ Argument: action (`$ARGUMENTS`) can be `status` or empty.
    - explain the exact reason in plain language
    - suggest the next command (`skillgate auth login`, `skillgate keys list`, or policy fix)
 5. If user asks for local sidecar startup guidance, provide this command:
-   - `python -m uvicorn skillgate.sidecar.app:create_sidecar_app --factory --host 127.0.0.1 --port 9911`
+   - `skillgate sidecar start --host 127.0.0.1 --port 9911`
+   - Legacy compatibility: `skillgate run --sidecar`
 6. Report a final one-line status:
    - `Enforcement readiness: READY`
    - or `Enforcement readiness: ACTION REQUIRED — <reason>`

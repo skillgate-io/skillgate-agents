@@ -16,10 +16,17 @@ skillgate scan <path> --enforce --policy production
 skillgate scan <path> --output sarif > results.sarif
 
 # Signed attestation for compliance
-skillgate scan <path> --sign --output json > attestation.json
+skillgate scan <path> --sign --report-file attestation.json
 
 # Verify a signed report
 skillgate verify attestation.json
+```
+
+First-time reputation setup (optional, recommended):
+
+```bash
+skillgate reputation init --store .skillgate/reputation/reputation.json
+skillgate scan <path> --reputation-store .skillgate/reputation/reputation.json
 ```
 
 Policy presets: `development` (permissive) → `staging` → `production` (recommended for CI) → `strict` (maximum).
